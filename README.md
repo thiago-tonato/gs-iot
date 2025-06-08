@@ -57,7 +57,7 @@ O FireWatch é composto por três componentes principais:
 1. Clone o repositório:
 
 ```bash
-git clone [URL_DO_REPOSITÓRIO]
+git clone https://github.com/thiago-tonato/gs-iot
 cd firewatch
 ```
 
@@ -142,24 +142,6 @@ O projeto está organizado nos seguintes arquivos:
     ↓                    ↓              ↓
 [Sensores]        → [HiveMQ]     → [Dashboard]
 ```
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Para contribuir:
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
-## 📞 Suporte
-
-Para suporte, envie um email para [seu-email@dominio.com] ou abra uma issue no repositório.
 
 ---
 
