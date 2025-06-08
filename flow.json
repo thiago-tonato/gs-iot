@@ -1,0 +1,196 @@
+[
+    {
+        "id": "6f9daf8cd90a852e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "mqtt-in-firewatch",
+        "type": "mqtt in",
+        "z": "6f9daf8cd90a852e",
+        "name": "Receber do Wokwi",
+        "topic": "firewatch/sensores",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "mqtt-broker-hivemq",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 780,
+        "wires": [
+            [
+                "func-temperatura",
+                "func-fumaca",
+                "func-co2"
+            ]
+        ]
+    },
+    {
+        "id": "func-temperatura",
+        "type": "function",
+        "z": "6f9daf8cd90a852e",
+        "name": "Temperatura",
+        "func": "msg.payload = msg.payload.temperatura;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 720,
+        "wires": [
+            [
+                "gauge-temperatura"
+            ]
+        ]
+    },
+    {
+        "id": "func-fumaca",
+        "type": "function",
+        "z": "6f9daf8cd90a852e",
+        "name": "Fumaça",
+        "func": "msg.payload = msg.payload.fumaca;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 780,
+        "wires": [
+            [
+                "gauge-fumaca"
+            ]
+        ]
+    },
+    {
+        "id": "func-co2",
+        "type": "function",
+        "z": "6f9daf8cd90a852e",
+        "name": "CO₂",
+        "func": "msg.payload = msg.payload.co2;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 840,
+        "wires": [
+            [
+                "gauge-co2"
+            ]
+        ]
+    },
+    {
+        "id": "gauge-temperatura",
+        "type": "ui_gauge",
+        "z": "6f9daf8cd90a852e",
+        "name": "Temperatura (°C)",
+        "group": "group-sensores",
+        "order": 1,
+        "width": 3,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Temperatura (°C)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 640,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "gauge-fumaca",
+        "type": "ui_gauge",
+        "z": "6f9daf8cd90a852e",
+        "name": "Fumaça (%)",
+        "group": "group-sensores",
+        "order": 2,
+        "width": 3,
+        "height": 3,
+        "gtype": "donut",
+        "title": "Fumaça (%)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 630,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "gauge-co2",
+        "type": "ui_gauge",
+        "z": "6f9daf8cd90a852e",
+        "name": "CO₂ (%)",
+        "group": "group-sensores",
+        "order": 3,
+        "width": 3,
+        "height": 3,
+        "gtype": "donut",
+        "title": "CO₂ (%)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 620,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "mqtt-broker-hivemq",
+        "type": "mqtt-broker",
+        "name": "HiveMQ Broker",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "NodeREDClient",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "group-sensores",
+        "type": "ui_group",
+        "name": "Sensores Individuais",
+        "tab": "tab-dashboard",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": false
+    },
+    {
+        "id": "tab-dashboard",
+        "type": "ui_tab",
+        "name": "FireWatch Dashboard",
+        "icon": "dashboard",
+        "order": 1
+    }
+]
